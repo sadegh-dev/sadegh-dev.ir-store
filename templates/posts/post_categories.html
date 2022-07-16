@@ -1,0 +1,28 @@
+{% extends 'base_social.html' %}
+{% load thumbnail %}
+{% block title %} {{ the_category.name }} {% endblock %}
+{% block content %}
+
+  
+<!-- Section-->
+{% for post in posts %}
+<div class="col mb-5">
+    <div class="card h-100">
+        <!-- Product details-->
+        <div class="card-body p-4">
+            <div class="text-right" dir='rtl'>
+                {% thumbnail post.user.image "300x300" as img %}
+                <img class="card-img-top rounded-circle w-25" src="{{ img.url }}" alt="{{ img.name }}" />
+                {% endthumbnail %}
+                <!-- Product name-->
+                <h7 class="fw-bolder"><a style='text-decoration: none; color:#1aa3ff;' href='{% url "posts:dashboard" post.user.id  %}' >{{ post.user.full_name }}</a></h7>
+                <!-- Product price-->
+                <div class='text-muted'>{{ post.created|date:'H:i / Y-m-d'}}</div>
+                <div class='text-left' dir='ltr'><a class='btn btn-warning' href='{{ post.category.get_absolute_url }}'>{{ post.category }}</a></div>
+                <a style='text-decoration: none; color:#444444;' href='{{ post.get_absolute_url }}' >{{ post.body }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %} 

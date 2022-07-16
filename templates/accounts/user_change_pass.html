@@ -1,0 +1,13 @@
+{% extends 'base_accounts.html' %}
+{% block title %} تغییر رمز عبور {% endblock %}
+{% block content %}
+    <h4> تغییر رمز عبور </h4>
+    <form action='' method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <div class="g-recaptcha" data-sitekey="6Lc9ZWUdAAAAAOZJ71vfzB4MSnkGkbkxVif_1B90"></div>
+        <input type='submit' class='btn btn-primary' value='تغییر رمز'>
+        <a href="{% url 'accounts:user_profile' %}" type="button" class="btn btn-danger">انصراف</a>
+    </form>
+{% endblock %} 

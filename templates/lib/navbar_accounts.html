@@ -1,0 +1,68 @@
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+      <a class="navbar-brand" href="{% url 'doshop:home' %}"> BTCR.sadegh.dev </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if user.is_authenticated %}
+            {% if user.access_level == 'o' %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-light bg-success rounded" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  پنل مدیریت
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'doshop:insert_product' %}">ثبت کالای جدید</a></li>
+                  <li><a class="dropdown-item" href="{% url 'doshop:not_available_products' %}">لیست کالاهای غیرفعال</a></li>
+                  <li><a class="dropdown-item" href="{% url 'doshop:all_order_list' %}">لیست سفارشات کاربران</a></li>
+                  <li><a class="dropdown-item" href="{% url 'doshop:all_order_list' %}"></a></li>
+                </ul>
+              </li>
+            {% endif %}
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'accounts:user_profile' %}">پروفایل</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'accounts:user_change_pass' %}">تغییر رمز عبور</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'doapi:get_token' %}">دریافت توکن api</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'accounts:list_api' %}">api های کاربردی</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'accounts:user_edit' %}">ویرایش مشخصات</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'orders:order_list' %}">سفارشات ثبت شده</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-dark" href="{% url 'doshop:home' %}">بازگشت</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'accounts:user_logout' %}">خروج</a>
+              </li>
+          {% else %}
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'accounts:user_register' %}">ثبت نام</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" href="{% url 'accounts:user_login' %}"> ورود</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+
+

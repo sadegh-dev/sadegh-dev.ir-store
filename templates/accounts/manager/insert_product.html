@@ -1,0 +1,11 @@
+{% extends 'base_accounts.html' %}
+{% block title %} ثبت کالای جدید {% endblock %}
+{% block content %}
+    <h4> ثبت کالای جدید </h4>
+    <form enctype="multipart/form-data" action='' method="POST" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' class='btn btn-primary' value='ثبت کالا'>
+        <a href="{% url 'doshop:home' %}" type="button" class="btn btn-danger">انصراف</a>
+    </form>
+{% endblock %}

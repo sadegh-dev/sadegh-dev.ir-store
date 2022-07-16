@@ -1,0 +1,81 @@
+{% extends 'base_detail_post.html' %}
+{% load thumbnail %}
+{% block title %} {{ post.user.full_name }} {% endblock %}
+{% block content %}
+
+<!--#########################################################-->
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-20">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            {% thumbnail post.user.image "300x300" as img %}
+                               <img class="card-img-top rounded-circle w-25" style='max-height: 120px; max-width: 120px;' src="{{ img.url }}" alt="{{ img.name }}" />
+                            {% endthumbnail %}
+                            <!-- Post meta content-->
+                            <div class="text-muted  mb-2">
+                                <h7 class="fw-bolder"><a style='text-decoration: none; color:#1aa3ff;' href='{% url "posts:dashboard" post.user.id  %}' >{{ post.user.full_name }}</a></h7>
+                            </div>
+                            <div class="text-muted  mb-2">
+                                <div class='text-muted'>{{ post.created|date:'H:i / Y-m-d'}}</div>
+                            </div>
+                            <!-- Post categories-->
+                            <div class='text-left' dir='rtl'><a class='btn btn-warning' href='{{ post.category.get_absolute_url }}'>{{ post.category }}</a></div>
+                        </header>
+                        {% if request.user.id == post.user.id %}
+                            <p >
+                                <a class='text-danger' href='{% url "posts:delete_post" post.user.id  post.id  %}' > حذف پست</a> | 
+                                <a class='text-danger' href='{% url "posts:edit_post" post.user.id  post.id  %}' > ویرایش پست</a>
+                            </p>
+                        {% endif %}
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">{{ post.body }}</p>
+                        </section>
+                        <div>تعداد دیدگاه ها: {{ comments.count }} </div>
+                    </article>
+
+
+                    <!-- Comments section-->
+                    <section class="mb-5">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <!-- Comment form-->
+                                {% if request.user.is_authenticated %}
+                                    <form  class='mb-4' action='' method=POST>
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <input type='submit' value='ارسال دیدگاه' class='btn btn-primary'>
+                                    </form>
+                                {% else %}
+                                    <p>برای ارسال دیدگاه باید وارد سیستم شوید</p>
+                                {% endif %}
+                                <!-- Comment with nested comments-->
+                                
+                                    {% for comment in comments %}
+                                    <div class="d-flex mb-4">
+                                        <!-- Parent comment-->
+                                        {% thumbnail comment.user.image "300x300" as img %}
+                                            <div class="flex-shrink-0"><img class="rounded-circle" style='max-height: 60px; max-width: 60px;' src="{{ img.url }}" alt="{{ img.name }}" /></div>
+                                        {% endthumbnail %}
+                                        <div class="ms-3">
+                                            <div class="fw-bold">{{ comment.user.full_name }}</div>
+                                            {{ comment.body }}
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                        <div class="ms-3" >دیدگاهی نوشته نشده است</div>
+                                    {% endfor %}
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+{% endblock %} 
+
+
+

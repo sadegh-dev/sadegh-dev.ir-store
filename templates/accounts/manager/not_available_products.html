@@ -1,0 +1,41 @@
+{% extends 'base_accounts.html' %}
+{% load thumbnail %}
+
+{% block title %} فروشگاه آنلاین {% endblock %}
+{% block content %}   
+    <!-- Section-->
+    {% for product in products %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Sale badge-->
+                {% if product.specialـprice %}
+                    <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">فروش ویژه</div>
+                {% endif %}
+                    <!-- Product image-->
+                {% thumbnail product.image "300x300" as img %}
+                <img class="card-img-top" src="{{ img.url }}" alt="{{ img.name }}" />
+                {% endthumbnail %}
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center" dir='rtl'>
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{ product.name }}</h5>
+                        <!-- Product price-->
+                        {% if product.specialـprice %}
+                            <span class="text-muted text-decoration-line-through">{{ product.price|floatformat:"-3g" }}</span>
+                            <span class="text-danger ">{{ product.specialـprice|floatformat:"-3g" }} </span>  تومان
+                        {% else %}
+                            {{ product.price|floatformat:"-3g"  }}تومان
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center"><a href='{% url "doshop:edit_available_product" product.slug %}' class="btn btn-outline-dark mt-auto">فعال کردن کالا</a></div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <h5 dir='rtl' class="fw-bolder">موردی یافت نشد</h5>
+    {% endfor %}
+{% endblock %}

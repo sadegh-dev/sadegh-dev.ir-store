@@ -1,0 +1,32 @@
+{% extends 'base_accounts.html' %}
+{% load thumbnail %}
+{% block title %} تغییر قیمت کالا {% endblock %}
+{% block content %}
+    <!-- Section-->
+    <div class="col mb-5 w-50 p-3">
+        <div class="card h-100">
+            <!-- Sale badge-->
+            {% if product.specialـprice %}
+                <div class="badge bg-danger text-white position-absolute" style="top: 0.5rem; right: 0.5rem">فروش ویژه</div>
+            {% endif %}
+                <!-- Product image-->
+            {% thumbnail product.image "500x500" as img %}
+            <a href='{{ product.get_absolute_url }}'><img class="card-img-top" src="{{ img.url }}" alt="{{ img.name }}" /></a>
+            {% endthumbnail %}
+            <!-- Product details-->
+            <div class="card-body p-4">
+                <div class="text-center" dir=rtl>
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                </div>
+                <h4>تغییر قیمت کالا</h4>
+            <form action='' method="POST" >
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type='submit' class='btn btn-primary' value='ثبت قیمت جدید'>
+                <a href="{% url 'doshop:home' %}" type="button" class="btn btn-danger">انصراف</a>
+            </form>
+            </div>           
+        </div>
+    </div>
+{% endblock %}

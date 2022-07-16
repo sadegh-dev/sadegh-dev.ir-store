@@ -1,0 +1,11 @@
+{% extends 'base_social.html' %}
+{% block title %} ویرایش مطلب {% endblock %}
+{% block content %}
+    <form  action=''  method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' value='ثبت ویرایش' class='btn btn-primary' >
+        <a href="{% url 'posts:all_posts' %}" type="button" class="btn btn-danger">انصراف</a>
+    </form>
+{% endblock %} 
+ 

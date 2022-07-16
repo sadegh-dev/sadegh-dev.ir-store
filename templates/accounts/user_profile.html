@@ -1,0 +1,31 @@
+{% extends 'base_accounts.html' %}
+
+{% block title %} پروفایل {% endblock %}
+{% block content %}   
+    <table dir='rtl' class="table table-striped ">
+        <tbody>
+        <tr>
+            <th scope="col">نام و نام خانوادگی</th>   
+            <td scope="col">{{ the_user.full_name }}</td>      
+        </tr>
+        <tr>
+            <th scope="col">ایمیل</th>   
+            <td scope="col">{{ the_user.email }}</td> 
+        </tr>
+        <tr>
+            <th scope="col">کد ملی</th>   
+            <td scope="col">{{ the_user.national_code }}</td> 
+        </tr>
+        <tr><th style='background-color:#bbff99;' scope="col " colspan=2 >اطلاعات تماس</th></tr>
+        <tr>
+            <th scope="col">شماره همراه</th>   
+            <td scope="col">{{ the_user.mobile }}</td> 
+        </tr>
+        <tr>
+            <th scope="col">آدرس</th>   
+            <td scope="col">{{ the_user.address }}</td> 
+        </tr>
+        </tbody>
+    </table>
+    <a href="{% url 'accounts:user_edit' %}" type="button" class="btn btn-primary">ویرایش مشخصات</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base_accounts.html' %}
+{% block title %} api {% endblock %}
+{% block content %}
+    <h4>api های کاربردی </h4>
+    <table dir='rtl' class="table table-striped ">
+        <tbody>
+        <tr><th style='background-color:#bbff99;' scope="col " colspan=2 >api های عمومی</th></tr>
+        <tr>
+            <th scope="col">همه دسته بندی ها</th>   
+            <td scope="col">https://btcr.sadegh.dev/api/all-categories/</td>      
+        </tr>
+        <tr>
+            <th scope="col">همه شرکت های سازنده</th>   
+            <td scope="col">https://btcr.sadegh.dev/api/all-companies/</td>      
+        </tr>
+        <tr>
+            <th scope="col">کالاهای با تخفیف ویژه</th>   
+            <td scope="col">https://btcr.sadegh.dev/api/special-price-products/</td>      
+        </tr>
+        <tr>
+            <th scope="col">کالاهای این دسته بندی  / slug مربوط به دسته مورد نظر را در انتهای آدرس وارد نمایید</th>   
+            <td scope="col">https://btcr.sadegh.dev/api/category-products/</td>      
+        </tr>
+        <tr><th style='background-color:#bbff99;' scope="col " colspan=2 >api  خصوصی</th></tr>
+        <tr><th dir='ltr' style='background-color:#bbff99;' scope="col " colspan=2 >[POST]  KEY: Authorization  VALUE: Token ... </th></tr>
+        <tr>
+            <th scope="col">همه کالاهای خریداری شده - باید با token احراز هویت نمایید</th>   
+            <td scope="col">https://btcr.sadegh.dev/api/my-orders/</td>      
+        </tr>     
+        </tbody>
+    </table>    
+{% endblock %} 

@@ -1,0 +1,11 @@
+{% extends 'base_accounts.html' %}
+{% block title %} ویرایش حساب کاربری {% endblock %}
+{% block content %}
+    <h4> ویرایش حساب کاربری </h4>
+    <form enctype="multipart/form-data" action='' method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type='submit' class='btn btn-primary' value='ثبت'>
+        <a href="{% url 'accounts:user_profile' %}" type="button" class="btn btn-danger">انصراف</a>
+    </form>
+{% endblock %}    
