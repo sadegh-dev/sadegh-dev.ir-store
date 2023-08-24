@@ -3,6 +3,11 @@ from django.urls import reverse
 
 
 class Category(models.Model):
+    '''
+    class of Category model
+
+    slug field is unique field.
+    '''
     name =      models.CharField(max_length=400)
     slug =      models.SlugField(max_length=500, unique=True)
 
