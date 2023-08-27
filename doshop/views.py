@@ -9,6 +9,11 @@ from cart.forms import CartAddForm
 from .forms import InsertProductForm, EditProductForm, EditPriceProductForm, EditAvailableProductForm
 
 def home(request) :
+    '''
+    Home View for render all data
+
+    send all data : products, categories, companies
+    '''
     products = Product.objects.filter(available=True)
     categories = Category.objects.all()
     companies = Company.objects.all()
