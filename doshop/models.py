@@ -42,6 +42,12 @@ class Company(models.Model):
 
 
 class Product(models.Model):
+    '''
+    class of Category model
+
+    slug field is unique field.
+    category and company class are relation 1-n with this class
+    '''
     category =      models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     company =       models.ForeignKey(Company, on_delete=models.CASCADE, related_name='products', null=True)
     name =          models.CharField(max_length=400)
