@@ -13,6 +13,10 @@ import json
 from core import settings
 
 def user_register(request):
+    ''' User register function
+
+    use captcha 
+    '''
     if request.method == 'POST' :
         form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
