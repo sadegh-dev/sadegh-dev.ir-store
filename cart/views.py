@@ -24,6 +24,12 @@ def cart_detail(request):
 @login_required
 @require_POST
 def cart_add(request, product_id):
+    '''
+    The function of adding a product and its quantity.
+
+    This function registers the product along with 
+    its number for temporary storage in the Sessions department.
+    '''
     product = get_object_or_404(Product, id=product_id)
     cart = CartSessions(request)
     form = CartAddForm(request.POST)
