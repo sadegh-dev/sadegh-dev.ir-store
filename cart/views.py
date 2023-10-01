@@ -45,6 +45,12 @@ def cart_add(request, product_id):
 
 @login_required
 def cart_remove(request, product_id):
+    '''
+    A function to remove the product from the shopping cart
+
+    This function removes the desired product
+    from the CartSession based on the ID number.
+    '''
     cart = CartSessions(request)
     product = get_object_or_404(Product, id=product_id)
     cart.remove(product)
