@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def cart_detail(request):
+    ''' Show some data separately '''
     cart = CartSessions(request)
     categories = Category.objects.all()
     companies = Company.objects.all()
